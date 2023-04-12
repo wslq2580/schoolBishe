@@ -35,7 +35,7 @@ geo = (Geo(init_opts=opts.InitOpts(width='1200px',
          )
     .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
     .set_global_opts(
-    title_opts=opts.TitleOpts(title='星巴克门店在中国的分布'),
+    title_opts=opts.TitleOpts(title='岗位所在地统计'),
     visualmap_opts=opts.VisualMapOpts(max_=100,is_piecewise=True,split_number = 10)
     )
 )
