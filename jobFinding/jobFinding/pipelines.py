@@ -24,7 +24,18 @@ class JobfindingDB(object):
         self.cursor.execute('use liepin;')
         # 创建表格
 
-        self.cursor.execute("create table if not exists liePinJob(title varchar(100) not null comment'岗位名称',province varchar(10) not null comment'岗位所在省',city varchar(30) not null comment'岗位所在市',requireEduLevel varchar(100) not null comment'教育水平',requireWorkYears varchar(100) not null comment'工作年数要求',salary_lower varchar(100) not null comment'最低薪资',salary_high varchar(100) not null comment'最高薪资',labels varchar(100) not null comment'岗位标签',recruiterName varchar(100) not null comment'招聘人姓名',recruiterTitle varchar(100) not null comment'招聘人等级',link varchar(400) PRIMARY KEY,compName varchar(120) not null comment'公司名称')")
+        self.cursor.execute("create table if not exists liePinJob("
+                            "title varchar(100) not null comment'岗位名称',"
+                            "province varchar(10) not null comment'岗位所在省',"
+                            "city varchar(30) not null comment'岗位所在市',"
+                            "requireEduLevel varchar(100) not null comment'教育水平',"
+                            "requireWorkYears varchar(100) not null comment'工作年数要求',"
+                            "salary_lower varchar(100) not null comment'最低薪资',"
+                            "salary_high varchar(100) not null comment'最高薪资',"
+                            "labels varchar(100) not null comment'岗位标签',"
+                            "recruiterName varchar(100) not null comment'招聘人姓名',"
+                            "recruiterTitle varchar(100) not null comment'招聘人等级',"
+                            "link varchar(400) PRIMARY KEY,compName varchar(120) not null comment'公司名称')")
 
         self.data =[]
 
@@ -36,7 +47,8 @@ class JobfindingDB(object):
     def _write_to_db(self):
         self.cursor.execute('truncate table liepinjob')
         self.cursor.executemany(
-            'insert ignore into liePinJob (title,province,city,requireEduLevel,requireWorkYears,salary_lower,salary_high,labels,recruiterName,recruiterTitle,link,compName) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
+            'insert ignore into liePinJob (title,province,city,requireEduLevel,requireWorkYears,salary_lower,salary_high,labels,recruiterName,recruiterTitle,link,compName) '
+            'values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
             self.data
         )
         self.conn.commit()
